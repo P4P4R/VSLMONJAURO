@@ -1,0 +1,133 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Noto Sans", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-navy: var(--navy);
+  --color-navy-mid: var(--navy-mid);
+  --color-navy-light: var(--navy-light);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-dark: var(--whatsapp-dark);
+  --color-success: var(--success);
+  --color-success-text: var(--success-text);
+  --color-on-dark: var(--on-dark);
+  --color-subtle: var(--subtle);
+  --color-surface: var(--surface);
+}
+
+:root {
+  --radius: 0.5rem;
+  /* brand */
+  --navy: oklch(0.255 0.125 279);        /* #1a1560 */
+  --navy-mid: oklch(0.29 0.14 279);      /* #221c7a */
+  --navy-light: oklch(0.33 0.15 279);    /* #2a2580 */
+  --gold: oklch(0.74 0.115 88);          /* #c8a84b */
+  --gold-dark: oklch(0.68 0.115 87);     /* #b8973a */
+  --whatsapp: oklch(0.77 0.2 149);       /* #25D366 */
+  --whatsapp-dark: oklch(0.7 0.18 149);
+  --success: oklch(0.72 0.19 150);
+  --success-text: oklch(0.63 0.17 150);
+  --on-dark: oklch(1 0 0);
+  --subtle: oklch(0.71 0.02 262);        /* gray-400 */
+  --surface: oklch(0.985 0.002 248);     /* gray-50 */
+
+  --background: var(--surface);
+  --foreground: var(--navy);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--navy);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--navy);
+  --primary: var(--navy);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: var(--gold);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.967 0.003 265);       /* gray-100 */
+  --muted-foreground: oklch(0.55 0.02 264); /* gray-500 */
+  --accent: oklch(0.967 0.003 265);
+  --accent-foreground: var(--navy);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.928 0.006 265);      /* gray-200 */
+  --input: oklch(0.928 0.006 265);
+  --ring: var(--gold);
+
+  --gradient-hero: linear-gradient(to bottom right, var(--navy), var(--navy-mid), var(--navy));
+  --gradient-band: linear-gradient(to right, var(--navy), var(--navy-light));
+  --shadow-gold: 0 10px 15px -3px color-mix(in oklab, var(--gold) 30%, transparent),
+    0 4px 6px -4px color-mix(in oklab, var(--gold) 30%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@utility bg-hero {
+  background-image: var(--gradient-hero);
+}
+@utility bg-band {
+  background-image: var(--gradient-band);
+}
+@utility shadow-gold {
+  box-shadow: var(--shadow-gold);
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
